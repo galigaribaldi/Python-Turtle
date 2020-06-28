@@ -1,16 +1,24 @@
 # Python-Turtle
--> Descripcion del proyecto: 
-	Este curso contiene las nociones básicas acerca del lenguaje de 
-	programación python, esto incluye:
-		Básicos
-		Ciclos de Repetición
-		Funciones y operaciones Aritméticas
-		Mandalas-Z Código avanzado
-		Interfaz Gráfica con Tkinter
-		Presentación en Power Point acerca de las primeras 
-		clases
-	Creado por galigaribaldi0@gmail.com
-<<<<<<< HEAD
+Este repositorio contiene código del lenguaje python y tiene como finalidad, explicar las nociones básicas del lenguaje, así como las diferentes aplicaciones gráficas que se pueden hacer en el. A continuación se muestra las 3 formas en las que está dividido el Repositorio
 
-=======
->>>>>>> 53752a172dcf9b4e6d9aa15fc05c7657862f7f69
+## Aprendiendo Python
+
+<img src="logo.png" style="zoom:33%;" />
+
+En esta sección se puede aprender las nociones básicas del lenguaje python, un poco de su historia, syntaxis, particularidades y códigos de uso básico para el aprendizaje del mismo. En esta sección encontrarás las siguientes carpetas:
+
+- Básicos
+- Ciclos de Repetición
+- Funciones y Operaciones
+- Errores y Excepciones
+- Socket
+
+## Aprendiendo Tkinter
+
+<img src="tkinter.png" style="zoom:80%;" />
+
+## Aprendiendo Turtles
+
+![](pythonturtle.jpg)
+
+Creado por galigaribaldi0@gmail.com
