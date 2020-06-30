@@ -17,7 +17,17 @@ marco.config(bg="red",
              relief="raised" #solid
 )
 marco.pack(side=LEFT, anchor=SW)
-
+marco.pack_propagate(False)
+texto = Label(marco, text="Primer Marco")
+texto.config(
+    bg="red",
+    fg="white",
+    font=("Arial", 20),
+    #bd=3,
+    #relief=SOLID,
+    anchor=CENTER
+)
+texto.pack(fill=Y, expand=YES)
 ##############2do Marco
 marco = Frame(marco_padre, width=250, height=250)
 marco.config(bg="green",
