@@ -27,3 +27,4 @@ def triangulo():
         frank.lt(120)
     frank.end_fill() ###fin de relleno
 triangulo()
+input()

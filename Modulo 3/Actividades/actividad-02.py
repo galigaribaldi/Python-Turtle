@@ -27,3 +27,4 @@ def triangulo():
     forward(100)
     left(120)
 triangulo()
+input()
