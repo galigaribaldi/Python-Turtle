@@ -67,7 +67,7 @@ def main(tam1, tam2):
     #input()
     ##Dibujar el tablero
     tablero(tam1)
-    ###Lineas de afuera
+    ###Lineas de afuera 
     exterior(tam2)
     turtle.done()
 main(70,75)
