@@ -21,12 +21,12 @@ colors3 =['orange red', 'light salmon', 'bisque', 'yellow', 'blue', 'green']
 frank3.pen(speed=25)#setting the speed of the pen to 25
 frank3.shape('turtle')#setting the shape of the turtle as "classic
 
-def spiral_shape(name_turtle,p,c, colors):
+def spiral_shape(name_turtle,tam,giros, colors):
     if p > 0:
-        name_turtle.forward(p)
-        name_turtle.right(c)
+        name_turtle.forward(tam)
+        name_turtle.right(giros)
         name_turtle.pencolor(colors[p%6])
-        spiral_shape(name_turtle,p-5,c, colors)
+        spiral_shape(name_turtle,tam-5,giros, colors)
 ###Tortuga 1
 frank.setpos(-300, 0)#setting the position as given
 spiral_shape(frank,400, 121, colors)#calling the function with the given arguments
