@@ -1,10 +1,10 @@
 # Proyecto 1 Módulo 3 *Tablero de Ajedrez*
 
-Este proyecto corresponde al módulo 3 de programación en python. En el se debe recrear (hasta donde se pueda) un tablero de ajedrez. 
+En este proyecto se debe recrear (hasta donde se pueda) un tablero de ajedrez. 
 
 ![](https://images-na.ssl-images-amazon.com/images/I/51r2%2BueTskL._AC_SX355_.jpg)
 
-Este se debe de recrear con ayuda dle lenguaje de programación Python y la librería [Turtle](https://docs.python.org/3/library/turtle.html#turtle.write), este debe de contener las características que se describen a continuación
+Este se debe de recrear con ayuda del lenguaje de programación Python y la librería [Turtle](https://docs.python.org/3/library/turtle.html#turtle.write) y  debe de contener las características que se describen a continuación
 
 ## Especificaciones Generales
 
@@ -35,11 +35,11 @@ Formato de entrega, se debe entregar 2 archivos:
 
    6. Captura de pantalla del código ejecutandose
 
-   7. Captura de pantalla del validador (En este proyecto no hay validador, este punro se omite)
+   7. Captura de pantalla del validador (En este proyecto no hay validador, este punto se omite)
 
 ## Especificaciones del código 
 
-A continuación se describe las características que debe contener el código y y el dibujo
+A continuación se describe las características que debe contener el código y el dibujo
 
 1. Función creadora de la figura cuadrado, se recomiendo que este cuadrado tenga de tamaño 50 a 70, **no se recomienda hacerlo de 100**, la función debe llamarse *cuadrado*
 
@@ -122,7 +122,7 @@ Ejecución y demostración del programa
 
 Esta sección detalla los puntos extra que el programa puede tener
 
-- **Color de pantalla de fondo:** Proponer e implentar un color diferente a la pantalla blanca. *TIP: Usar el screen de turtle*
+- **Color de pantalla de fondo:** Proponer e implementar un color diferente a la pantalla blanca. *TIP: Usar el screen de turtle*
 - **Color de Tortuga y forma de la tortuga:** Proponer un color y forma de la tortuga 
 - **Líneas externas y letras del tablero:** Generar letras y números cosrrespondientes a las posiciones exteriroes del tablero. A continuación se presenta el resultado de éste punto
   - **TIP: Se recomienda usar la función *write* y definir una lista con los datos que se escribiran**
