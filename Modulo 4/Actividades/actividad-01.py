@@ -1,10 +1,37 @@
 import turtle
 from random import *
-migue = turtle.Turtle() #inheriting the turtle
-
+##Generación de Tortugas
+##Migue = Tortuga de pista
+migue = turtle.Turtle() ##Primera Tortuga
 migue.penup()
-migue.goto(-140,140) #positioning the pen
+##Frank = Tortuga competidora 1
+frank = turtle.Turtle()
+frank.color('green') 
+frank.shape('turtle') 
+##MAturin = Tortuga competidora 2
+maturin = turtle.Turtle()
+maturin.color('red')
+maturin.shape('turtle')
+###donatello = Tortuga competidora 3
+donatello = turtle.Turtle()
+donatello.color('blue')
+donatello.shape('turtle')
 
+###Acciones
+migue.goto(-140,140) #Tortuga dibujadora
+##Competidor 1
+frank.penup()
+frank.goto(-160,100)
+frank.pendown()
+##Competidor 2
+maturin.penup()
+maturin.goto(-160,80)
+maturin.pendown()
+##Competidor 3
+donatello.penup()
+donatello.goto(-160,60)
+donatello.pendown()
+###Pista
 for sp in range(15): #loop for creating the lines labelled with numbers
     migue.speed(10)#setting the speed
     migue.write(sp)#writing the int
@@ -17,29 +44,7 @@ for sp in range(15): #loop for creating the lines labelled with numbers
     migue.left(90)#left set at 90 degrees
     migue.forward(20)#forward at 20 units
 
-
-frank = turtle.Turtle() #inheriting the turtle
-frank.color('green') #setting the color to green for the first turtle
-frank.shape('turtle') #setting the shape to "turtle"
-frank.penup() #not ready to draw
-frank.goto(-160,100) #positioning the turtle
-frank.pendown() #ready todraw
-
-
-maturin = turtle.Turtle() #inheriting another turtle
-maturin.color('red') #setting the color og the turtle to red
-maturin.shape('turtle') #declaring the shape of the turtle to "turtle"
-maturin.penup() #not ready to draw
-maturin.goto(-160,80) #positioning
-maturin.pendown() #ready to draw
-
-donatello = turtle.Turtle() #inheriting the last turtle
-donatello.color('blue') #setting the color of the turtle as "blue"
-donatello.shape('turtle') #declaring the shape of the turtle
-donatello.penup() #not ready to draw
-donatello.goto(-160,60) #positioning
-donatello.pendown() #ready
-
+###Competidores
 for turn in range(100): #loop for the racew
     frank.forward(randint(1,5)) #setting the speed randomly with the "random" module
     maturin.forward(randint(1,5)) #setting the speed randomly with the "random" module

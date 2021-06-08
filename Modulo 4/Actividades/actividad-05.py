@@ -50,7 +50,7 @@ maturin = generate_Tortugas("red","arrow",1,3) ##Segunda tortuga
 threading.Thread(target=func1).start()
 threading.Thread(target=func3).start()
 
-screen = generate_screen()
+screen = generate_screen("")
 
 process_queue(graphics, screen)
 
