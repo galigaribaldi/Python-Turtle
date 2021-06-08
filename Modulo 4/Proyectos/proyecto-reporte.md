@@ -2,15 +2,15 @@
 
 En este proyecto se debe recrear y simular una carrera de tortugas. Estás deben ser simultáneas gracias al módulo.
 
-![](https://images-na.ssl-images-amazon.com/images/I/51r2%2BueTskL._AC_SX355_.jpg)
+<img src="C:\Users\galig\OneDrive\Documentos\Python-Turtle\Modulo 4\Proyectos\Carrera.PNG" alt="Carrera" style="zoom:60%;" />
 
-Este se debe de recrear con ayuda del lenguaje de programación Python y la librería [Turtle](https://docs.python.org/3/library/turtle.html#turtle.write) y  debe de contener las características que se describen a continuación
+Este se debe de recrear con ayuda del lenguaje de programación Python y la librería [Turtle](https://docs.python.org/3/library/turtle.html#turtle.write), el módulo *threading*, *queue* y el módulo propio proporcionado en clase. Para descargar el módulo propio hecho en clase, seguir el siguiente [link](https://github.com/galigaribaldi/Python-Turtle/blob/master/Modulo%204/Proyectos/modulo2.py)
 
 ## Especificaciones Generales
 
 Formato de entrega, se debe entregar 2 archivos:
 
-1. **Código del programa:** Guardar el código con el nombre *proyecto-tablero.py*
+1. **Código del programa:** Guardar el código con el nombre *proyecto-carrera.py*
 
 2. **Reporte del código:** Este debe conllevar los siguientes puntos:
 
@@ -39,92 +39,251 @@ Formato de entrega, se debe entregar 2 archivos:
 
 ## Especificaciones del código 
 
-A continuación se describe las características que debe contener el código y el dibujo
+A continuación se describe las características que debe contener el código y el dibujo.
 
-1. Función creadora de la figura cuadrado, se recomiendo que este cuadrado tenga de tamaño 50 a 70, **no se recomienda hacerlo de 100**, la función debe llamarse *cuadrado*
+1. Módulo creado en clase **modulo2.py**: Éste código es el msotrado en clase, de el se deben usar las funciones:
 
-   ```python
-   ##Funcion creadora de cuadrado
-   def cuadrado(tam):
-       for _ in range(4):
-           frank.forward(tam)
-           frank.right(90)   
-   ```
+   1. generate_screen()
+   2. generate_Tortugas()
+   3. penup()
+   4. pendown()
+   5. goto()
+   6. write()
+   7. right()
+   8. forward()
+   9. backward()
+   10. left()
 
-2. Función creadora de una hilera horizontal de cuadros de ajedrez, es decir una hilera de 8 cuadros de ajedrez, esta función debe llamarse *hilera_horizontal*. **OJO: El código está incompleto**
+2. Código respecto al archivo de acción **proyecto-carrera.py**, este código debe estar dividido en 3 secciones:
 
-   ```python
-   ###Codigo correspondiente a la hilera horizontal
-   def hilera_horizontal(tam):
-       for i in range(4):
-           ##Cuadro 1
-           frank.color("black",lista[0])
-           frank.begin_fill()
-           cuadrado(tam)
-           frank.fd(tam)
-           frank.end_fill()
-   
-   ```
+   1. **Creación de pantalla, tortugas y queue de reproducción**:
 
-   1. **Opcional:** Lograr que se pinten los cuadros de color (éstos pueden ser blanco y negro o bien azul y gris). **TIP: Se recomienda crear una lista con los colores dispoinbles y generar 2 opciones para cuadrados** 
+      1. En ésta sección se deben de definir 3 - 4 tortugas competidoras, éstan pueden tener el nombre que deseen, 1 tortuga trazadora de la pista y una pantalla.
+
+         ```python
+         ##Pantalla
+         screen = generate_screen("")
+         
+         ##Tortugas Competidoras
+         frank = generate_Tortugas("black","turtle",1,0)
+         maturin = generate_Tortugas("blue","circle",1,0)
+         rafael = generate_Tortugas("green","arrow",1,0)
+         donatello = generate_Tortugas("blue","arrow",1,0)
+         
+         ###Tortuga trazadora
+         traza = generate_Tortugas("black","circle",1,0)
+         ```
+
+         
+
+   2. **Funciones de acción:**
+
+      1. **Función trazadora:** Ésta función es exclusiva de la tortuga trazadora
+
+         ```python
+         def trazadora():
+             penup(traza, graphics)
+             goto(traza, graphics, -140,140)
+             for i in range(17):
+                 write(traza, graphics, str(i))
+                 right(traza, 90,graphics)
+                 forward(traza, 10, graphics)
+                 pendown(traza, graphics)
+                 forward(traza, 150, graphics)
+                 penup(traza, graphics)
+                 backward(traza, graphics,160)
+                 left(traza, 90, graphics)
+                 forward(traza,20, graphics)
+         ```
+
+         
+
+      2. **Función competidor:** Ésta función es para poder mover cada uno de los competidores
+
+         ```python
+         def competidor(tortuga, graphics,posx, posy):
+             penup(tortuga, graphics)
+             goto(tortuga, graphics, posx,posy)
+             pendown(tortuga, graphics)
+             for i in range(100):
+                 forward(tortuga, randint(1,5), graphics)
+         ```
+
+         
+
+   3. Creación y acción de hilos de ejecución: En esta sección se deben de crear los hilos de ejecución correspondientes a cada tortuga
 
       ```python
-      ##OJO: El codigo es una recomendacion
-      color1=["black", "white"]
-      color2=["white", "black"]
-      lista= color2
-      if opcion==1:
-        lista = color1
-      ########Cuadro 1
-      #Completar código
-      ####Cuadro 2
-      frank.color("black", lista[1])
-      frank.begin_fill()
-      cuadrado(tam)
-      frank.fd(tam)
-      frank.end_fill()        
+      ###Hilos de Ejecución
+      threading.Thread(target=trazadora).start()
+      threading.Thread(target=competidor, args=(frank, graphics,-160, 100)).start()
+      threading.Thread(target=competidor, args=(maturin, graphics,-160, 80)).start()
+      threading.Thread(target=competidor, args=(rafael, graphics,-160, 60)).start()
+      threading.Thread(target=competidor, args=(donatello, graphics,-160, 40)).start()
+      process_queue(graphics, screen)
+      
+      screen.exitonclick()
       ```
 
-3. Repetición de 8 veces de la función creadora de línea horizontal, esta función debe poder llenar el tablero de *8x8*. **TIP: Se recomienda posicionarse en la posición *(-250,300)*, esto se logra con el comando goto(), así como moverse con los comandos *penup()* y *pendown()***
+   4. **EXTRAS:** Se recomienda importar los siguientes módulos.
 
-   ```python
-   ###OJO, el código está icompleto y se debe completar conforme a la realización del proyecto
-   def tablero(tam):
-       frank.penup()
-       frank.goto(-250,300)
-       frank.pendown()
-       for i in range(1,9):
-           hilera_horizontal(tam)
-           frank.penup()
-           frank.rt(90)
-           frank.fd(tam)
-           frank.rt(90)
-           frank.fd(tam*8)
-           frank.lt(180)
-           frank.pendown()
-   ```
+      ```python
+      ###
+      from random import *
+      import queue
+      import threading
+      from turtle import pendown, penup
+      ```
 
-4. Por último debe haber una función llamado main(), la cual debe activar la realización de todo el código
+      
 
-   ```python
-   def main(tam1):
-       ##Dibujar el tablero
-       tablero(tam1)
-       turtle.done()
-   main(70)
-   ```
+# Proyecto 2 Módulo 4 *Tortugas Simultáneas*
 
-Ejecución y demostración del programa
+Esta  sección es meramente opcional, se recomienda usar el archivo *modulo2.py*, para poder crear un dibujo de creación libre, este puede ser el que sea, mándalas, figuras de fantasía, etc. Sin embargo se deve de considerar los siguientes puntos:
 
-<img src="../../../../../../Library/Application Support/typora-user-images/image-20210519225848342.png" alt="image-20210519225848342" style="zoom:50%;" />
+1. **Uso del modulo2:** Se debe usar el modulo 2 creado en clase, se adjunta el [link](https://github.com/galigaribaldi/Python-Turtle/blob/master/Modulo%204/Proyectos/modulo2.py)
+2. **Creación de por lo menos 3 hilos:** Para este proyecto se deben de usar por lo menos 3 hilos de ejecución para que sean tortugas simultáneas
+3. **Creatividad:** Se calificará con puntos extra la creatividad.
 
-## Extras
+Ejemplo de Código, en el se usan 10 hilos:
 
-Esta sección detalla los puntos extra que el programa puede tener
+```python
+import queue
+import threading
+###
+#from modulo2 import forward,right, left, figuree, process_queue, generate_screen,generate_Tortugas
+from modulo2 import *
+##torttuga 1
+frank = generate_Tortugas("green", "turtle", 1, 0)
+##tortuga 2
+maturin = generate_Tortugas("yellow", "arrow", 1, 0)
 
-- **Color de pantalla de fondo:** Proponer e implementar un color diferente a la pantalla blanca. *TIP: Usar el screen de turtle*
-- **Color de Tortuga y forma de la tortuga:** Proponer un color y forma de la tortuga 
-- **Líneas externas y letras del tablero:** Generar letras y números cosrrespondientes a las posiciones exteriroes del tablero. A continuación se presenta el resultado de éste punto
-  - **TIP: Se recomienda usar la función *write* y definir una lista con los datos que se escribiran**
+##torttuga 3
+frank0 = generate_Tortugas("blue", "turtle", 1, 0)
+##tortuga 4
+maturin0 = generate_Tortugas("red", "arrow", 1, 0)
 
-<img src="../../../../../../Library/Application Support/typora-user-images/image-20210519230718353.png" alt="image-20210519230718353" style="zoom:70%;" />
+##torttuga 5
+frank1 = generate_Tortugas("blue violet", "turtle", 1, 0)
+##tortuga 6
+maturin1 = generate_Tortugas("linen", "arrow", 1, 0)
+
+##torttuga 7
+frank2 = generate_Tortugas("deep pink", "turtle", 1, 0)
+##tortuga 8
+maturin2 = generate_Tortugas("dark cyan", "arrow", 1, 0)
+##torttuga 9
+frank3 = generate_Tortugas("medium slate blue", "turtle", 1, 0)
+##tortuga 10
+maturin3 = generate_Tortugas("white", "arrow", 1, 0)
+
+###Queue de Reproduccion
+graphics = queue.Queue(1)  # size = number of hardware threads you have - 1
+#####################################################
+##MAturin Circulo interno
+def func1():
+    for i in range(30):
+        figure(maturin, graphics,3,70)
+        right(maturin, 65, graphics)
+##Frank circulo externo
+def func2():
+    for i in range(60):
+        figure(frank, graphics,8,100)
+        right(frank, 91,graphics)    
+#####################################################          
+##MAturin Circulo interno
+def func3():
+    penup(maturin0,graphics)
+    goto(maturin0,graphics,-300, 180)
+    pendown(maturin0,graphics)
+    for i in range(30):
+        figure(maturin0, graphics,3,70)
+        right(maturin0, 65, graphics)
+##Frank circulo externo
+def func4():
+    penup(frank0,graphics)
+    goto(frank0,graphics,-300, 180)
+    pendown(frank0,graphics)    
+    for i in range(60):
+        figure(frank0, graphics,8,100)
+        right(frank0, 91,graphics)    
+
+#####################################################          
+##MAturin Circulo interno
+def func5():
+    penup(maturin1,graphics)
+    goto(maturin1,graphics,300, 180)
+    pendown(maturin1,graphics)
+    for i in range(30):
+        figure(maturin1, graphics,3,70)
+        right(maturin1, 65, graphics)
+##Frank circulo externo
+def func6():
+    penup(frank1,graphics)
+    goto(frank1,graphics,300, 180)
+    pendown(frank1,graphics)    
+    for i in range(60):
+        figure(frank1, graphics,8,100)
+        right(frank1, 91,graphics)         
+        
+#####################################################          
+##MAturin Circulo interno
+def func7():
+    penup(maturin2,graphics)
+    goto(maturin2,graphics,300, -180)
+    pendown(maturin2,graphics)
+    for i in range(30):
+        figure(maturin2, graphics,3,70)
+        right(maturin2, 65, graphics)
+##Frank circulo externo
+def func8():
+    penup(frank2,graphics)
+    goto(frank2,graphics,300, -180)
+    pendown(frank2,graphics)    
+    for i in range(60):
+        figure(frank2, graphics,8,100)
+        right(frank2, 91,graphics)
+#####################################################          
+##MAturin Circulo interno
+def func9():
+    penup(maturin3,graphics)
+    goto(maturin3,graphics,-300, -180)
+    pendown(maturin3,graphics)
+    for i in range(30):
+        figure(maturin3, graphics,3,70)
+        right(maturin3, 65, graphics)
+##Frank circulo externo
+def func10():
+    penup(frank3,graphics)
+    goto(frank3,graphics,-300, -180)
+    pendown(frank3,graphics)    
+    for i in range(60):
+        figure(frank3, graphics,8,100)
+        right(frank3, 91,graphics)               
+###Hilos de Ejecución
+threading.Thread(target=func1).start()
+threading.Thread(target=func2).start()
+###
+threading.Thread(target=func3).start()
+threading.Thread(target=func4).start()
+###
+threading.Thread(target=func5).start()
+threading.Thread(target=func6).start()
+###
+threading.Thread(target=func7).start()
+threading.Thread(target=func8).start()
+###
+threading.Thread(target=func9).start()
+threading.Thread(target=func10).start()
+
+screen = generate_screen("black")
+
+process_queue(graphics, screen)
+
+screen.exitonclick()
+
+```
+
+**Ejemplo de salida:**
+
+![SalidaFinal](C:\Users\galig\OneDrive\Documentos\Python-Turtle\Modulo 4\Proyectos\SalidaFinal.PNG)
