@@ -1,5 +1,6 @@
 import threading
 import turtle
+from time import sleep
 ###Generador de Pantallas
 def generate_screen(color):
     sc = turtle.Screen()
@@ -65,6 +66,9 @@ def goto(turtle, graphics, posx,posy):
 ##Write
 def write(turtle, graphics,texto):
     graphics.put((turtle.write, texto))    
+##Backward
+def backward(turtle, graphics,tam):
+    graphics.put((turtle.backward, tam))        
 ###Procesos en cola para la tortuga
 def process_queue(graphics,screen):
     while not graphics.empty():
